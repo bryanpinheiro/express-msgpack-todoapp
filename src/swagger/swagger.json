@@ -1,0 +1,162 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Todo API",
+    "description": "API for managing todos"
+  },
+  "basePath": "/api",
+  "paths": {
+    "/todo": {
+      "get": {
+        "summary": "Get all todos",
+        "produces": [
+          "application/octet-stream"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new todo",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "todo",
+            "description": "Todo object",
+            "schema": {
+              "$ref": "#/definitions/TodoInput"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        }
+      }
+    },
+    "/todo/{id}": {
+      "get": {
+        "summary": "Get a todo by ID",
+        "produces": [
+          "application/octet-stream"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a todo",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "todo",
+            "description": "Updated todo object",
+            "schema": {
+              "$ref": "#/definitions/Todo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a todo",
+        "produces": [
+          "application/octet-stream"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Todo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "completed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "TodoInput": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
